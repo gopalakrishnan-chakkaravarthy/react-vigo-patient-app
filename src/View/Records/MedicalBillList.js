@@ -1,46 +1,86 @@
 import React from 'react';
-import View from 'react-native';
-import DialogAlert from '../../Reusables/DialogAlert';
-import AppListView from '../../Reusables/AppListView';
+import {ScrollView} from 'react-native';
+import {Dialog, Portal, Provider} from 'react-native-paper';
 import DataManager from '../../Providers/DataManager ';
+import Button from '../../Reusables/Button';
+import PharmacyDetails from '../Common/PharmacyDetails';
 import BaseHttpService from '../../Providers/BaseHttpService';
 import {ApiUrls} from '../../Constants/ApiUrls';
+import {ColorConstant} from '../../Constants/ColorConstant';
 import {AppGlobalConstants} from '../../Constants/AppGlobalConstants';
+import {GlobalStyle} from '../../Styles/GlobalStyle';
 import {MessageConstants} from '../../Constants/MessageConstants';
-import LoadingIndicator from '../../Reusables/LoadingIndicator';
-import HelperService from '../../Helpers/HelperService';
+import MedicalBillDetails from './MedicalBillDetails';
+import BillDetailHeader from '../Common/BillDetailHeader';
+import {
+  DialogAlert,
+  AppListView,
+  LoadingIndicator,
+} from '../../Reusables/index';
 import withUnmounted from '@ishawnwang/withunmounted';
 class MedicalBillList extends React.Component {
   listRows = [];
   constructor(props) {
     super(props);
+
     this.state = {
       isLoading: true,
       dataSource: {
         header: {},
         rows: [],
       },
+      details: {id: '', name: '', date: '', amount: ''},
+      openDetails: false,
     };
   }
   componentDidMount() {
     this.loadItems();
   }
-  componentWillUnmount() {}
   onListClick = selectedItem => {
-    debugger;
+    if (!this.state?.openDetails) {
+      const details = {
+        id: selectedItem?.id,
+        name: selectedItem?.title,
+        date: selectedItem?.date,
+        amount: selectedItem?.subTitle,
+      };
+      this.setState({details: details});
+      this.setState({openDetails: true});
+    }
   };
-  // onSearchChange = $event => {
-  //   debugger;
-  //   const filteredResult = HelperService.filterItems(
-  //     this.listRows,
-  //     'title',
-  //     $event,
-  //   );
-  //   this.setState({
-  //     dataSource: filteredResult,
-  //     isLoading: false,
-  //   });
-  // };
+  onModalClose() {
+    this.setState({openDetails: false});
+  }
+  renderDetails() {
+    return (
+      <Provider>
+        <Portal>
+          <Dialog visible={this.state.openDetails}>
+            <Dialog.ScrollArea>
+              <ScrollView contentContainerStyle={GlobalStyle.modalContainer}>
+                <PharmacyDetails />
+                <BillDetailHeader
+                  id={this.state?.details?.id}
+                  name={this.state?.details?.name}
+                  amount={this.state?.details?.amount}
+                  date={this.state?.details?.date}></BillDetailHeader>
+                <MedicalBillDetails
+                  id={this.state?.details?.id}></MedicalBillDetails>
+                <Button
+                  style={style.closeButton}
+                  mode="outline"
+                  icon="close"
+                  color={ColorConstant.backgroundColor}
+                  onPress={() => this.onModalClose()}>
+                  Close
+                </Button>
+              </ScrollView>
+            </Dialog.ScrollArea>
+          </Dialog>
+        </Portal>
+      </Provider>
+    );
+  }
   loadItems() {
     const loginName = DataManager.GetItem(AppGlobalConstants?.loginName);
     const apiUrl = ApiUrls.medicalBillList + loginName;
@@ -69,15 +109,28 @@ class MedicalBillList extends React.Component {
       DialogAlert.openAlert(MessageConstants.noRecordsfound);
     });
   }
-  render() {
-    if (this.state.isLoading) {
-      return <LoadingIndicator />;
-    }
+  renderListOnLoad() {
     return (
       <AppListView
         dataSource={this.state.dataSource}
         onListClick={this.onListClick}></AppListView>
     );
   }
+  render() {
+    if (this.state.isLoading) {
+      return <LoadingIndicator />;
+    }
+    if (!this.state?.openDetails) {
+      return this.renderListOnLoad();
+    }
+    if (this.state?.openDetails) {
+      return this.renderDetails();
+    }
+  }
 }
 export default withUnmounted(MedicalBillList);
+const style = {
+  closeButton: {
+    backgroundColor: ColorConstant.iconBackgroundColor,
+  },
+};

@@ -6,7 +6,9 @@ export const AppGlobalConstants = {
     LoginScreen: 'LoginScreen',
     Dashboard: 'Dashboard',
     MedicalBill: 'MedicalBill',
+    MedicalBillDetail: 'MedicalBillDetail',
     LabBill: 'LabBill',
+    LabReport: 'LabReport',
     Prescription: 'Prescription',
   },
   Notification: {

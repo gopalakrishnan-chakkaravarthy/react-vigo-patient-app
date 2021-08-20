@@ -2,22 +2,35 @@ import React from 'react';
 import {Provider} from 'react-native-paper';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
-import {defaultTheme} from './src/Core/theme';
+import {AppGlobalConstants} from './src/Constants/AppGlobalConstants';
+import {customTheme} from './src/Core/theme';
+import HeaderNav from './src/Reusables/HeaderNav';
 import LoginScreen from './src/View/LoginScreen';
+import {MedicalBillDetails} from './src/View/Records/index';
 import Dashboard from './src/View/Dashboard';
 const Stack = createStackNavigator();
 
 export default function App() {
   return (
-    <Provider theme={defaultTheme}>
+    <Provider theme={customTheme}>
       <NavigationContainer>
         <Stack.Navigator
-          initialRouteName="LoginScreen"
+          initialRouteName={AppGlobalConstants.Routes.LoginScreen}
           screenOptions={{
-            headerShown: false,
+            header: props => <HeaderNav {...props} />,
           }}>
-          <Stack.Screen name="LoginScreen" component={LoginScreen} />
-          <Stack.Screen name="Dashboard" component={Dashboard} />
+          <Stack.Screen
+            name={AppGlobalConstants.Routes.LoginScreen}
+            component={LoginScreen}
+          />
+          <Stack.Screen
+            name={AppGlobalConstants.Routes.Dashboard}
+            component={Dashboard}
+          />
+          <Stack.Screen
+            name={AppGlobalConstants.Routes.MedicalBill}
+            component={MedicalBillDetails}
+          />
         </Stack.Navigator>
       </NavigationContainer>
     </Provider>

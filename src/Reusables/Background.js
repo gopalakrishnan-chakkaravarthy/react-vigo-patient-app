@@ -1,7 +1,6 @@
 import React from 'react';
 import {View, StyleSheet, KeyboardAvoidingView} from 'react-native';
 import {defaultTheme} from '../Core/theme';
-
 export default function Background({children}) {
   return (
     <View style={styles.background}>

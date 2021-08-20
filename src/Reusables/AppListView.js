@@ -1,13 +1,13 @@
 import * as React from 'react';
 import {ScrollView, StyleSheet} from 'react-native';
-import {List, Divider, Title, Subheading, Text} from 'react-native-paper';
-
+import {List, Title, Subheading, Text} from 'react-native-paper';
+import {ColorConstant} from '../Constants/ColorConstant';
 export default class AppListView extends React.Component {
   constructor(props) {
     super(props);
   }
   onListClick = selectedItem => {
-    console.log('List View Pressed');
+    debugger;
     this.props.onListClick(selectedItem);
   };
   createListBody = () => {
@@ -15,9 +15,21 @@ export default class AppListView extends React.Component {
     for (let index = 0; index < this.props?.dataSource?.rows?.length; index++) {
       listBody.push(
         <List.Item
-          onPress={this.onListClick(this.props?.dataSource?.rows[index])}
+          style={styleSheet.listSize}
+          onPress={() => this.onListClick(this.props?.dataSource?.rows[index])}
           key={'listBody_' + index}
-          left={() => <List.Icon icon="file-eye-outline" />}
+          left={() => (
+            <List.Icon
+              icon="clipboard-list-outline"
+              color={styleSheet.listIconColor.color}
+            />
+          )}
+          right={() => (
+            <List.Icon
+              icon="chevron-right"
+              color={styleSheet.listIconColor.color}
+            />
+          )}
           title={
             <Title style={styleSheet.listTitleFont} numberOfLines={5}>
               {this.props?.dataSource?.rows[index]?.title}
@@ -30,9 +42,6 @@ export default class AppListView extends React.Component {
           }
         />,
       );
-      if (index === this.props?.dataSource?.rows?.length - 1) {
-        listBody.push(<Divider key={'dividerBody_' + index} />);
-      }
     }
     return listBody;
   };
@@ -46,8 +55,16 @@ export default class AppListView extends React.Component {
 const styleSheet = StyleSheet.create({
   listTitleFont: {
     fontSize: 12,
+    color: ColorConstant.fontTitleColor,
   },
   listSubTitleFont: {
     fontSize: 10,
+    fontStyle: 'italic',
+  },
+  listSize: {
+    height: 65,
+  },
+  listIconColor: {
+    color: ColorConstant.iconColor,
   },
 });

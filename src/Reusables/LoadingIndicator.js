@@ -8,6 +8,7 @@ function LoadingIndicator() {
         style={styles.loader}
         animating={true}
         color={Colors.blueA100}
+        size={50}
       />
     </View>
   );
@@ -20,7 +21,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   loader: {
-    marginTop: '50%',
+    marginTop: '55%',
   },
 });
 

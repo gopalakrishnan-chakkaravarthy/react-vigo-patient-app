@@ -1,64 +1,27 @@
 import {configureFonts, DefaultTheme, DarkTheme} from 'react-native-paper';
-
 const fontConfig = {
-  web: {
+  default: {
     regular: {
-      fontFamily: 'sans-serif',
+      fontFamily: 'roboto',
       fontWeight: 'normal',
+      fontSize: 10, // <-- Try using this but not work
     },
     medium: {
-      fontFamily: 'sans-serif-medium',
+      fontFamily: 'roboto',
       fontWeight: 'normal',
     },
     light: {
-      fontFamily: 'sans-serif-light',
+      fontFamily: 'roboto',
       fontWeight: 'normal',
     },
     thin: {
-      fontFamily: 'sans-serif-thin',
-      fontWeight: 'normal',
-    },
-  },
-  ios: {
-    regular: {
-      fontFamily: 'sans-serif',
-      fontWeight: 'normal',
-    },
-    medium: {
-      fontFamily: 'sans-serif-medium',
-      fontWeight: 'normal',
-    },
-    light: {
-      fontFamily: 'sans-serif-light',
-      fontWeight: 'normal',
-    },
-    thin: {
-      fontFamily: 'sans-serif-thin',
-      fontWeight: 'normal',
-    },
-  },
-  android: {
-    regular: {
-      fontFamily: 'sans-serif',
-      fontWeight: 'normal',
-    },
-    medium: {
-      fontFamily: 'sans-serif-medium',
-      fontWeight: 'normal',
-    },
-    light: {
-      fontFamily: 'sans-serif-light',
-      fontWeight: 'normal',
-    },
-    thin: {
-      fontFamily: 'sans-serif-thin',
+      fontFamily: 'roboto',
       fontWeight: 'normal',
     },
   },
 };
 export const defaultTheme = {
   ...DefaultTheme,
-  fonts: configureFonts(fontConfig),
   colors: {
     ...DefaultTheme.colors,
     text: '#000000',
@@ -68,13 +31,18 @@ export const defaultTheme = {
   },
 };
 
-export const darkTheme = {
-  ...DarkTheme,
+export const customTheme = {
+  fonts: configureFonts(fontConfig),
+  ...DefaultTheme,
   colors: {
-    ...DarkTheme.colors,
-    text: '#000000',
-    primary: '#560CCE',
-    secondary: '#414757',
-    error: '#f13a59',
+    primary: '#1f3a93',
+    accent: '#19b5fe',
+    background: 'white',
+    surface: '#6bb9f0',
+    text: '#001021',
+    error: '#B71F0E',
+    disabled: '#BEC6C6',
+    placeholder: '#1481BA',
+    backdrop: '#001021',
   },
 };
