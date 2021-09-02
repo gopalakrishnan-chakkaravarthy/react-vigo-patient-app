@@ -2,9 +2,10 @@ import React from 'react';
 import {StyleSheet, View} from 'react-native';
 import {Paragraph, Avatar} from 'react-native-paper';
 import DialogAlert from '../../Reusables/DialogAlert';
-import BaseHttpService from '../../Providers/BaseHttpService';
-import {ApiUrls} from '../../Constants/ApiUrls';
+import {AppStateManager, BaseHttpService} from '../../Providers/index';
 import {ColorConstant} from '../../Constants/ColorConstant';
+import {ApiUrls} from '../../Constants/ApiUrls';
+import {StateKeys} from '../../Constants/StateKeys';
 import {GlobalStyle} from '../../Styles/GlobalStyle';
 import withUnmounted from '@ishawnwang/withunmounted';
 class PharmacyDetails extends React.Component {
@@ -15,19 +16,22 @@ class PharmacyDetails extends React.Component {
     };
   }
   componentDidMount() {
+    const data = AppStateManager.Get(StateKeys?.headers?.pharmacyHeader);
+    if (data) {
+      this.setState({
+        dataSource: data,
+      });
+      return;
+    }
     this.loadHeader();
   }
-  // shouldComponentUpdate() {
-  //   if (!this.state?.isLoading) {
-  //     return false;
-  //   }
-  // }
   loadHeader() {
     BaseHttpService.get(ApiUrls.pharmacyDetail, (_, response) => {
       if (!this.hasUnmounted) {
         this.setState({
           dataSource: response,
         });
+        AppStateManager.Set(StateKeys?.headers?.pharmacyHeader, response);
       }
     }).catch(error => {
       DialogAlert.openAlert(MessageConstants.noRecordsfound);

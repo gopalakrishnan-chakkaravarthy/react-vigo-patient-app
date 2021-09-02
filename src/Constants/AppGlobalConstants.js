@@ -1,7 +1,10 @@
 export const AppGlobalConstants = {
   userToken: 'userToken',
   loginName: 'loginName',
+  patientListForContact: 'patientListForContact',
   isLoggedIn: 'isLoggedIn',
+  qrCodePatientPrefix: 'HPMSPTQR',
+  qrDataOccurance: 100,
   Routes: {
     LoginScreen: 'LoginScreen',
     Dashboard: 'Dashboard',

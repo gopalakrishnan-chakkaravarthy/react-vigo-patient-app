@@ -56,6 +56,33 @@ export const GlobalStyle = StyleSheet.create({
     fontSize: 10,
     color: ColorConstant.fontTitleColor,
   },
+  detail20PercentHeaderCol: {
+    borderColor: '#e8e8e8',
+    borderWidth: 0,
+    borderBottomWidth: 0.6,
+    width: '20%',
+    textAlign: 'center',
+    fontWeight: 'bold',
+    fontSize: 10,
+    color: ColorConstant.fontTitleColor,
+  },
+
+  detailCol20PercentLeftAlign: {
+    borderColor: '#e8e8e8',
+    borderWidth: 0,
+    borderBottomWidth: 0.6,
+    width: '20%',
+    textAlign: 'left',
+    fontSize: 10,
+  },
+  detailCol20Percent: {
+    borderColor: '#e8e8e8',
+    borderWidth: 0,
+    borderBottomWidth: 0.6,
+    width: '20%',
+    textAlign: 'center',
+    fontSize: 10,
+  },
   detailHeaderCol: {
     borderColor: '#e8e8e8',
     borderWidth: 0,

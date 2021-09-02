@@ -1,6 +1,6 @@
 import axios from 'axios';
 import {ApiConfig} from '../Config/ApiConfig';
-import DataManager from './DataManager ';
+import DataManager from './DataManager';
 import {AppGlobalConstants} from '../Constants/AppGlobalConstants';
 class BaseHttpService {
   constructor() {

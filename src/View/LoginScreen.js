@@ -13,7 +13,7 @@ import BaseHttpService from '../Providers/BaseHttpService';
 import {ColorConstant} from '../Constants/ColorConstant';
 import {ApiUrls} from '../Constants/ApiUrls';
 import {ApiConfig} from '../Config/ApiConfig';
-import DataManager from '../Providers/DataManager ';
+import DataManager from '../Providers/DataManager';
 import {DialogAlert, LoadingIndicator} from '../Reusables/index';
 import withUnmounted from '@ishawnwang/withunmounted';
 class LoginScreen extends React.Component {
@@ -59,6 +59,10 @@ class LoginScreen extends React.Component {
     BaseHttpService.post(ApiUrls.authenticate, loginData, (_, response) => {
       DataManager.SetItem(AppGlobalConstants.userToken, response?.data?.token);
       DataManager.SetItem(AppGlobalConstants.loginName, loginData?.userName);
+      DataManager.SetItem(
+        AppGlobalConstants.patientListForContact,
+        response?.data?.data,
+      );
       DataManager.setLoginStatus();
       if (!this.hasUnmounted) {
         this.setState({

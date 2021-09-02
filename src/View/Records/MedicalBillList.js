@@ -1,7 +1,7 @@
 import React from 'react';
 import {ScrollView} from 'react-native';
 import {Dialog, Portal, Provider} from 'react-native-paper';
-import DataManager from '../../Providers/DataManager ';
+import DataManager from '../../Providers/DataManager';
 import Button from '../../Reusables/Button';
 import PharmacyDetails from '../Common/PharmacyDetails';
 import BaseHttpService from '../../Providers/BaseHttpService';
@@ -60,6 +60,7 @@ class MedicalBillList extends React.Component {
               <ScrollView contentContainerStyle={GlobalStyle.modalContainer}>
                 <PharmacyDetails />
                 <BillDetailHeader
+                  billPrefix="MB"
                   id={this.state?.details?.id}
                   name={this.state?.details?.name}
                   amount={this.state?.details?.amount}

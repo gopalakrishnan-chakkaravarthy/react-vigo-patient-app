@@ -1,15 +1,16 @@
 import React from 'react';
 import {StyleSheet} from 'react-native';
-import {BottomNavigation, Text} from 'react-native-paper';
+import {BottomNavigation} from 'react-native-paper';
 import {AppGlobalConstants} from '../Constants/AppGlobalConstants';
 import {ColorConstant} from '../Constants/ColorConstant';
 import MedicalBillList from '../View/Records/MedicalBillList';
+import PrecriptionList from '../View/Records/PrescriptionList';
+import LabBillList from '../View/Records/LabBillList';
 import Background from '../Reusables/Background';
-export default function Darshboard({navigation}) {
-  const PrescriptionRoute = () => <Text>Prescription Route</Text>;
+export default function Darshboard() {
+  const PrescriptionRoute = () => <PrecriptionList></PrecriptionList>;
   const MedicalBillRoute = () => <MedicalBillList></MedicalBillList>;
-  const LabReport = () => <Text>LabReportRoute</Text>;
-  const LabBill = () => <Text>Lab Bill</Text>;
+  const LabBill = () => <LabBillList></LabBillList>;
   const [index, setIndex] = React.useState(1);
   const [routes] = React.useState([
     {
@@ -30,19 +31,12 @@ export default function Darshboard({navigation}) {
       icon: 'blur-linear',
       color: ColorConstant?.iconColor,
     },
-    {
-      key: AppGlobalConstants.Routes.LabReport,
-      title: 'Lab Reports',
-      icon: 'layers-off-outline',
-      color: ColorConstant?.iconColor,
-    },
   ]);
   const onTabPress = props => {};
   const renderScene = BottomNavigation.SceneMap({
     Prescription: PrescriptionRoute,
     MedicalBill: MedicalBillRoute,
     LabBill: LabBill,
-    LabReport: LabReport,
   });
 
   return (

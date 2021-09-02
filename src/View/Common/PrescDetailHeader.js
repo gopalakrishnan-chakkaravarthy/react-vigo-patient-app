@@ -3,15 +3,13 @@ import {Paragraph} from 'react-native-paper';
 import {View} from 'react-native';
 import {GlobalStyle} from '../../Styles/GlobalStyle';
 
-const BillDetailHeader = props => (
+const PrescDetailHeader = props => (
   <View style={GlobalStyle.contactHeader}>
     <Paragraph style={GlobalStyle.fontBoldItalic}>{props?.name}</Paragraph>
     <Paragraph style={GlobalStyle.fontItalic}>{props?.date}</Paragraph>
-    <Paragraph style={GlobalStyle.fontBoldItalic}>{props?.amount}</Paragraph>
-    <Paragraph style={GlobalStyle.fontItalic}>
-      #{props?.billPrefix}VP00{props?.id}
-    </Paragraph>
+    <Paragraph style={GlobalStyle.fontBoldItalic}>{props?.diagnosis}</Paragraph>
+    <Paragraph style={GlobalStyle.fontItalic}>#PTVP00{props?.id}</Paragraph>
   </View>
 );
 
-export default BillDetailHeader;
+export default PrescDetailHeader;

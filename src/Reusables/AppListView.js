@@ -7,7 +7,6 @@ export default class AppListView extends React.Component {
     super(props);
   }
   onListClick = selectedItem => {
-    debugger;
     this.props.onListClick(selectedItem);
   };
   createListBody = () => {

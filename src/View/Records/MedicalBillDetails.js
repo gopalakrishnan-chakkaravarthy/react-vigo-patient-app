@@ -41,15 +41,18 @@ class MedicalBillDetails extends React.Component {
     let billDetail = [
       <View style={GlobalStyle.detailRow} key="bill_Header_Row">
         <Text style={GlobalStyle.detailHeaderColLeftAlign} key="header_Col1">
-          Name
+          Item
         </Text>
         <Text style={GlobalStyle.detailHeaderCol} key="header_Col2">
-          Quantity
+          Unit Price
         </Text>
         <Text style={GlobalStyle.detailHeaderCol} key="header_Col3">
-          Price
+          Quantity
         </Text>
         <Text style={GlobalStyle.detailHeaderCol} key="header_Col4">
+          Price
+        </Text>
+        <Text style={GlobalStyle.detailHeaderCol} key="header_Col5">
           Tax
         </Text>
       </View>,
@@ -61,12 +64,15 @@ class MedicalBillDetails extends React.Component {
             {this.state?.dataSource[index]?.drugName}
           </Text>
           <Text style={GlobalStyle.detailCol} key={'col2_' + index}>
-            {this.state?.dataSource[index]?.quantity}
+            {this.state?.dataSource[index]?.unitPrice}
           </Text>
           <Text style={GlobalStyle.detailCol} key={'col3_' + index}>
-            {this.state?.dataSource[index]?.itemCost}
+            {this.state?.dataSource[index]?.quantity}
           </Text>
           <Text style={GlobalStyle.detailCol} key={'col4_' + index}>
+            {this.state?.dataSource[index]?.itemCost}
+          </Text>
+          <Text style={GlobalStyle.detailCol} key={'col5_' + index}>
             {this.state?.dataSource[index]?.taxValue}
           </Text>
         </View>,

@@ -1,11 +1,10 @@
 export const ColorConstant = {
-  backgroundColor: '#19b5fe',
+  backgroundColor: '#d35400',
   white: 'white',
-  color: 'white',
   textMuted: '#e8e8e8',
   textDanger: 'red',
   textInfo: '#22a7f0',
-  iconColor: '#19b5fe',
+  iconColor: '#d35400',
   iconBackgroundColor: '#fff',
   fontTitleColor: '#6c7a89',
 };

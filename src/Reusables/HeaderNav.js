@@ -4,15 +4,24 @@ import {StyleSheet} from 'react-native';
 import {ApiConfig} from '../Config/ApiConfig';
 import {ColorConstant} from '../Constants/ColorConstant';
 import {AppGlobalConstants} from '../Constants/AppGlobalConstants';
-import DataManager from '../Providers/DataManager ';
+import {DataManager, AppStateManager} from '../Providers/index';
+import PatientQr from '../View/Account/PatientQr';
 export default function CustomNavigationBar({navigation}) {
+  const [openQr, setQr] = useState(false);
   const handleLogout = () => {
     DataManager.clear();
+    AppStateManager.Clear();
     navigation.reset({
       index: 0,
       routes: [{name: AppGlobalConstants.Routes.LoginScreen}],
     });
   };
+  onModalClose = () => {
+    setQr(false);
+  };
+  if (openQr) {
+    return <PatientQr />;
+  }
   if (!DataManager?.isLoggedIn()) {
     return null;
   }
@@ -21,22 +30,22 @@ export default function CustomNavigationBar({navigation}) {
       <Appbar.Content
         title={ApiConfig.clientName}
         subtitle={ApiConfig.clientSubTitle}
-        color={ColorConstant.fontTitleColor}
+        color={ColorConstant.white}
       />
 
       <Appbar.Action
         icon="account"
-        color={ColorConstant.fontTitleColor}
+        color={ColorConstant.white}
         onPress={() => console.log('Pressed account')}></Appbar.Action>
       <Appbar.Action
         icon="qrcode"
-        color={ColorConstant.fontTitleColor}
-        onPress={() => console.log('Qr Code pressed')}
+        color={ColorConstant.white}
+        onPress={() => setQr(true)}
       />
       <Appbar.Action
-        color={ColorConstant.fontTitleColor}
+        color={ColorConstant.white}
         icon="logout"
-        onPress={handleLogout}
+        onPress={() => handleLogout}
       />
     </Appbar>
   );
