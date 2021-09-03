@@ -1,13 +1,13 @@
 import React from 'react';
 import {StyleSheet, View, ScrollView} from 'react-native';
-import {Text} from 'react-native-paper';
+import {Text, Divider} from 'react-native-paper';
 import withUnmounted from '@ishawnwang/withunmounted';
 import QRCode from 'react-native-qrcode-svg';
-import Button from '../../Reusables/Button';
+import {Background, Button} from '../../Reusables/index';
 import {AppGlobalConstants} from '../../Constants/AppGlobalConstants';
 import {ColorConstant} from '../../Constants/ColorConstant';
-import {DataManager} from '../../Providers/index';
-
+import {DataManager, HelperService} from '../../Providers/index';
+import {GlobalStyle} from '../../Styles/GlobalStyle';
 class PatientQr extends React.Component {
   constructor(props) {
     super(props);
@@ -23,17 +23,21 @@ class PatientQr extends React.Component {
           AppGlobalConstants.patientListForContact,
         ),
       });
-      this.setState({openQr: true});
     }
   }
-  onModalClose() {
-    debugger;
-    this.setState({openQr: false});
-    this.props.onModalClose();
+  goBack() {
+    const {navigation} = this.props;
+    if (HelperService?.isLoggedIn) {
+      navigation.reset({
+        index: 0,
+        routes: [{name: AppGlobalConstants.Routes.Dashboard}],
+      });
+      return;
+    }
+    HelperService.logoutIfUserIsInvalid(navigation);
   }
   generateQrCodes() {
     let qrCodes = [];
-    debugger;
     for (let index = 0; index < this.state?.dataSource?.length; index++) {
       let qrCodeValue = [AppGlobalConstants.qrCodePatientPrefix];
       for (
@@ -46,14 +50,11 @@ class PatientQr extends React.Component {
       const qrString = qrCodeValue.join(',');
       qrCodes.push(
         <View key={'qr_row_' + index}>
-          <Text style={styles.qrCodeRow} key={'name_' + index}>
+          <Text key={'name_' + index} style={styles.qrTitle}>
             {this.state?.dataSource[index]?.patientname}
           </Text>
-          <QRCode
-            style={styles.qrCodeRow}
-            key={'qrCode_' + index}
-            value={qrString}
-          />
+          <Divider />
+          <QRCode key={'qrCode_' + index} value={qrString} size={300} />
         </View>,
       );
     }
@@ -62,28 +63,33 @@ class PatientQr extends React.Component {
   }
   render() {
     return (
-      <View>
-        {this.generateQrCodes()}
+      <Background>
+        <ScrollView contentContainerStyle={GlobalStyle.modalContainer}>
+          {this.generateQrCodes()}
+        </ScrollView>
         <Button
           style={styles.closeButton}
           mode="outline"
-          icon="close"
+          icon="keyboard-backspace"
           color={ColorConstant.backgroundColor}
-          onPress={() => this.onModalClose()}>
-          Close
+          onPress={() => this.goBack()}>
+          Back
         </Button>
-      </View>
+      </Background>
     );
   }
 }
 export default withUnmounted(PatientQr);
 const styles = StyleSheet.create({
-  qrCodeRow: {
-    width: '100%',
-    alignContent: 'center',
-    marginBottom: 0.5,
-  },
   closeButton: {
     backgroundColor: ColorConstant.iconBackgroundColor,
+    width: '80%',
+  },
+  qrTitle: {
+    textAlign: 'center',
+    marginBottom: 10,
+    fontWeight: 'bold',
+    fontSize: 10,
+    color: ColorConstant.fontTitleColor,
   },
 });

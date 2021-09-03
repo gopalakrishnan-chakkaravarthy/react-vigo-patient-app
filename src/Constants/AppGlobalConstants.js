@@ -8,6 +8,7 @@ export const AppGlobalConstants = {
   Routes: {
     LoginScreen: 'LoginScreen',
     Dashboard: 'Dashboard',
+    PatientQr: 'PatientQr',
     MedicalBill: 'MedicalBill',
     MedicalBillDetail: 'MedicalBillDetail',
     LabBill: 'LabBill',

@@ -1,5 +1,6 @@
 export {default as AppListView} from './AppListView';
 export {default as Background} from './Background';
+export {default as Button} from './Button';
 export {default as BackButton} from './BackButton';
 export {default as DataGrid} from './DataGrid';
 export {default as DialogAlert} from './DialogAlert';

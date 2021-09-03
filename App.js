@@ -6,7 +6,7 @@ import {AppGlobalConstants} from './src/Constants/AppGlobalConstants';
 import {customTheme} from './src/Core/theme';
 import HeaderNav from './src/Reusables/HeaderNav';
 import LoginScreen from './src/View/LoginScreen';
-import {MedicalBillDetails} from './src/View/Records/index';
+import PatientQr from './src/View/Account/PatientQr';
 import Dashboard from './src/View/Dashboard';
 const Stack = createStackNavigator();
 
@@ -28,8 +28,8 @@ export default function App() {
             component={Dashboard}
           />
           <Stack.Screen
-            name={AppGlobalConstants.Routes.MedicalBill}
-            component={MedicalBillDetails}
+            name={AppGlobalConstants.Routes.PatientQr}
+            component={PatientQr}
           />
         </Stack.Navigator>
       </NavigationContainer>
