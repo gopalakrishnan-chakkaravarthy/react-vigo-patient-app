@@ -27,10 +27,10 @@ export default function CustomNavigationBar({navigation}) {
         color={ColorConstant.white}
       />
 
-      <Appbar.Action
+      {/* <Appbar.Action
         icon="account"
         color={ColorConstant.white}
-        onPress={() => console.log('Pressed account')}></Appbar.Action>
+        onPress={() => console.log('Pressed account')}></Appbar.Action> */}
       <Appbar.Action
         icon="qrcode"
         color={ColorConstant.white}
