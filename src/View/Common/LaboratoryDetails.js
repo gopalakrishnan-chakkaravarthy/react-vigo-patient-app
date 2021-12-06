@@ -43,7 +43,7 @@ class LaboratoryDetails extends React.Component {
         <Paragraph style={GlobalStyle.fontBoldItalic}>
           {this.state.dataSource?.labName}
         </Paragraph>
-        <Paragraph style={GlobalStyle.cardDetailFont}>
+        <Paragraph style={GlobalStyle.fontBoldItalic}>
           {this.state.dataSource?.labAddress}
         </Paragraph>
         <Paragraph style={GlobalStyle.fontItalic}>

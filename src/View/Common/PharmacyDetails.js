@@ -43,7 +43,7 @@ class PharmacyDetails extends React.Component {
         <Paragraph style={GlobalStyle.fontBoldItalic}>
           {this.state.dataSource?.name}
         </Paragraph>
-        <Paragraph style={GlobalStyle.cardDetailFont}>
+        <Paragraph style={GlobalStyle.fontBoldItalic}>
           {this.state.dataSource?.address}
         </Paragraph>
         <Paragraph style={GlobalStyle.fontItalic}>

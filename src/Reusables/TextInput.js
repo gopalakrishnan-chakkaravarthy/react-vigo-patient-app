@@ -32,7 +32,7 @@ const styles = StyleSheet.create({
     borderTopWidth: 0,
     borderRightWidth: 0,
     borderLeftWidth: 0,
-    borderBottomColor: '#cccc',
+    borderBottomColor: '#cccc'
   },
   description: {
     fontSize: 13,

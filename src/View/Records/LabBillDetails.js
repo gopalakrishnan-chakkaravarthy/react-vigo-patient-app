@@ -93,7 +93,7 @@ const styles = StyleSheet.create({
     textAlign: 'left',
     fontWeight: 'bold',
     fontSize: 10,
-    color: ColorConstant.fontTitleColor,
+    color: ColorConstant.fontTitleColor
   },
   detailHeaderCol: {
     borderColor: '#e8e8e8',
@@ -103,7 +103,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontWeight: 'bold',
     fontSize: 10,
-    color: ColorConstant.fontTitleColor,
+    color: ColorConstant.fontTitleColor
   },
   detailColLeftAlign: {
     borderColor: '#e8e8e8',
@@ -111,7 +111,7 @@ const styles = StyleSheet.create({
     borderBottomWidth: 0.6,
     width: '33%',
     textAlign: 'left',
-    fontSize: 10,
+    fontSize: 10
   },
   detailCol: {
     borderColor: '#e8e8e8',
@@ -119,6 +119,6 @@ const styles = StyleSheet.create({
     borderBottomWidth: 0.6,
     width: '33%',
     textAlign: 'center',
-    fontSize: 10,
+    fontSize: 10
   },
 });

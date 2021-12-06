@@ -10,7 +10,6 @@ export default function CustomNavigationBar({navigation}) {
     HelperService.logoutIfUserIsInvalid(navigation);
   };
   const displayQr = () => {
-    debugger;
     navigation.reset({
       index: 0,
       routes: [{name: AppGlobalConstants.Routes.PatientQr}],

@@ -48,7 +48,7 @@ export default class AppListView extends React.Component {
     if (this.props?.dataSource?.rows?.length > 0) {
       return <ScrollView>{this.createListBody()}</ScrollView>;
     }
-    return <Text>No Records Found</Text>;
+    return <Text style={styleSheet.noRecords}>No Records Found</Text>;
   }
 }
 const styleSheet = StyleSheet.create({
@@ -58,7 +58,7 @@ const styleSheet = StyleSheet.create({
   },
   listSubTitleFont: {
     fontSize: 10,
-    fontStyle: 'italic',
+    fontStyle: 'italic'
   },
   listSize: {
     height: 65,
@@ -66,4 +66,12 @@ const styleSheet = StyleSheet.create({
   listIconColor: {
     color: ColorConstant.iconColor,
   },
+  noRecords:{
+    fontSize: 14,
+    fontStyle: 'italic',
+    textAlign:'center',
+    height:25,
+    top:'30%',
+    justifyContent:'center'
+  }
 });

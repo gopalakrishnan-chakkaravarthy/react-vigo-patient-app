@@ -11,3 +11,5 @@ export {default as Logo} from './Logo';
 export {default as Paragraph} from './Paragraph';
 export {default as SearchBox} from './SearchBox';
 export {default as TextInput} from './TextInput';
+export {default as CustomDatePicker} from './CustomDatePicker';
+export {default as AppCardTitle} from './AddCardTitle';

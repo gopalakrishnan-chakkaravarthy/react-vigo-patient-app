@@ -43,7 +43,7 @@ class HospitalDetails extends React.Component {
         <Paragraph style={GlobalStyle.fontBoldItalic}>
           {this.state.dataSource?.hospitalName}
         </Paragraph>
-        <Paragraph style={GlobalStyle.cardDetailFont}>
+        <Paragraph style={GlobalStyle.fontBoldItalic}>
           {this.state.dataSource?.hospitalAddress}
         </Paragraph>
         <Paragraph style={GlobalStyle.fontItalic}>

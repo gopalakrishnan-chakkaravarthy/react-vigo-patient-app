@@ -1,18 +1,21 @@
 import React from 'react';
-import {ScrollView} from 'react-native';
-import {Dialog, Portal, Provider} from 'react-native-paper';
+import {View, ScrollView} from 'react-native';
+import {Dialog, Portal, Provider, Divider} from 'react-native-paper';
 import DataManager from '../../Providers/DataManager';
-import Button from '../../Reusables/Button';
+import HelperService from '../../Helpers/HelperService';
 import HospitalDetails from '../Common/HospitalDetails';
 import BaseHttpService from '../../Providers/BaseHttpService';
 import {ApiUrls} from '../../Constants/ApiUrls';
 import {ColorConstant} from '../../Constants/ColorConstant';
+import {QueryFilterAttribute} from '../../Constants/QueryFilterAttribute';
 import {AppGlobalConstants} from '../../Constants/AppGlobalConstants';
 import {GlobalStyle} from '../../Styles/GlobalStyle';
 import {MessageConstants} from '../../Constants/MessageConstants';
 import PrescriptionDetails from './PrescriptionDetails';
 import PrescDetailHeader from '../Common/PrescDetailHeader';
 import {
+  Button,
+  CustomDatePicker,
   DialogAlert,
   AppListView,
   LoadingIndicator,
@@ -32,9 +35,19 @@ class PrecriptionList extends React.Component {
       openDetails: false,
     };
   }
+
   componentDidMount() {
-    this.loadItems();
+    this.loadItems(this.getCurrentDate());
   }
+  getCurrentDate() {
+    return new Date();
+  }
+
+  onDateChange = selectedDate => {
+    if (selectedDate) {
+      this.loadItems(new Date(selectedDate));
+    }
+  };
   onListClick = selectedItem => {
     if (!this.state?.openDetails) {
       const details = {
@@ -80,13 +93,13 @@ class PrecriptionList extends React.Component {
       </Provider>
     );
   }
-  loadItems() {
-    const loginName = DataManager.GetItem(AppGlobalConstants?.loginName);
-    const apiUrl = ApiUrls.prescriptionList + loginName;
-
-    BaseHttpService.get(apiUrl, (_, response) => {
+  loadItems(date) {
+    const payloadData = this.getPayload(date);
+    const apiUrl = ApiUrls.prescriptionList;
+    BaseHttpService.post(apiUrl, payloadData, (_, response) => {
       if (!this.hasUnmounted) {
-        this.listRows = response;
+        this.listRows = response?.data;
+     
         const dataSource = {
           header: {
             title: 'Prescritions',
@@ -108,11 +121,32 @@ class PrecriptionList extends React.Component {
       DialogAlert.openAlert(MessageConstants.noRecordsfound);
     });
   }
+
+  getPayload(date) {
+    const loginName = DataManager.GetItem(AppGlobalConstants?.loginName);
+    var formattedDate = HelperService.formatToEstDate(date);
+    const payloadData = [
+      {queryFilterAttribute: QueryFilterAttribute.mobileno, value: loginName},
+      {
+        queryFilterAttribute: QueryFilterAttribute.createddate,
+        value: formattedDate,
+      },
+    ];
+    return payloadData;
+  }
   renderListOnLoad() {
     return (
-      <AppListView
-        dataSource={this.state.dataSource}
-        onListClick={this.onListClick}></AppListView>
+      <View>
+        <CustomDatePicker
+          label={'Filter'}
+          defaultDate={this.getCurrentDate()}
+          onDateChange={this.onDateChange}
+        />
+        <Divider style={style.divider}></Divider>
+        <AppListView
+          dataSource={this.state.dataSource}
+          onListClick={this.onListClick}></AppListView>
+      </View>
     );
   }
   render() {

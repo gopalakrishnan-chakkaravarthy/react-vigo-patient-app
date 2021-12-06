@@ -81,6 +81,7 @@ export const GlobalStyle = StyleSheet.create({
     borderBottomWidth: 0.6,
     width: '20%',
     textAlign: 'center',
+    justifyContent:'center',
     fontSize: 10,
   },
   detailHeaderCol: {

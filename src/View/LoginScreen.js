@@ -90,7 +90,7 @@ class LoginScreen extends React.Component {
     return (
       <Background>
         <Logo />
-        <Header>{ApiConfig.productName}</Header>
+        <Header>{ApiConfig.appLandingSubTitle}</Header>
         <TextInput
           label="Mobile"
           returnKeyType="next"
@@ -129,6 +129,6 @@ export default withUnmounted(LoginScreen);
 const styles = StyleSheet.create({
   loginButton: {
     width: '80%',
-    color: ColorConstant.fontTitleColor,
+    color: ColorConstant.fontTitleColor
   },
 });

@@ -1,9 +1,9 @@
 import React from 'react';
 import {StyleSheet, View, ScrollView} from 'react-native';
-import {Text, Divider} from 'react-native-paper';
+import {Divider} from 'react-native-paper';
 import withUnmounted from '@ishawnwang/withunmounted';
 import QRCode from 'react-native-qrcode-svg';
-import {Background, Button} from '../../Reusables/index';
+import {Background, Button, AppCardTitle} from '../../Reusables/index';
 import {AppGlobalConstants} from '../../Constants/AppGlobalConstants';
 import {ColorConstant} from '../../Constants/ColorConstant';
 import {DataManager, HelperService} from '../../Providers/index';
@@ -49,12 +49,14 @@ class PatientQr extends React.Component {
       }
       const qrString = qrCodeValue.join(',');
       qrCodes.push(
-        <View key={'qr_row_' + index}>
-          <Text key={'name_' + index} style={styles.qrTitle}>
-            {this.state?.dataSource[index]?.patientname}
-          </Text>
+        <View key={'qr_row_' + index} style={styles.viewItem}>
+          <AppCardTitle
+            key={'name_' + index}
+            title={this.state?.dataSource[index]?.patientname}
+            subtitle={'PT'+this.state?.dataSource[index]?.patientid}
+            icon="account-key"></AppCardTitle>
           <Divider />
-          <QRCode key={'qrCode_' + index} value={qrString} size={300} />
+          <QRCode key={'qrCode_' + index} value={qrString} size={200} />
         </View>,
       );
     }
@@ -81,15 +83,25 @@ class PatientQr extends React.Component {
 }
 export default withUnmounted(PatientQr);
 const styles = StyleSheet.create({
+  viewItem:{
+    borderWidth:1,
+    borderColor:ColorConstant.backgroundColor,
+    alignItems:'center',
+    justifyContent:'flex-start',
+    backgroundColor:'#fff',
+    borderRadius:15,
+    top:'10%',
+    height:'65%',
+    width:'65%'
+  },
+  qrContainer: {
+    flex: 1,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
   closeButton: {
     backgroundColor: ColorConstant.iconBackgroundColor,
     width: '80%',
-  },
-  qrTitle: {
-    textAlign: 'center',
-    marginBottom: 10,
-    fontWeight: 'bold',
-    fontSize: 10,
-    color: ColorConstant.fontTitleColor,
-  },
+  }
 });

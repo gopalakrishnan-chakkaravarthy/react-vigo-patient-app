@@ -3,7 +3,7 @@ export const ApiConfig = {
   // should end with a slash
   clientId: '1',
   clientSecret: 'xc34jamesDevV41XwKbWhrsGgHvR3hjwG8',
-  productName: 'ViGo HPMS',
+  appLandingSubTitle: 'Your Health Matters',
   clientName: 'Vinayaga Poly Clinic',
   clientSubTitle: 'View your EHR',
 };

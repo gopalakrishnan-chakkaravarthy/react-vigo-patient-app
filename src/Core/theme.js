@@ -2,20 +2,16 @@ import {configureFonts, DefaultTheme, DarkTheme} from 'react-native-paper';
 const fontConfig = {
   default: {
     regular: {
-      fontFamily: 'roboto',
       fontWeight: 'normal',
       fontSize: 10, // <-- Try using this but not work
     },
     medium: {
-      fontFamily: 'roboto',
       fontWeight: 'normal',
     },
     light: {
-      fontFamily: 'roboto',
       fontWeight: 'normal',
     },
     thin: {
-      fontFamily: 'roboto',
       fontWeight: 'normal',
     },
   },

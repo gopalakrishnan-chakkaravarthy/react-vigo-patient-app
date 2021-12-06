@@ -1,3 +1,4 @@
+import { format } from "date-fns";
 class HelperService {
   filterItems = (dataRows, filterKey, filterValue) => {
     filterValue = filterValue.toLowerCase();
@@ -12,5 +13,9 @@ class HelperService {
       return filteredItems;
     }
   };
+  formatToEstDate(date){
+    var formattedDate = format(date, "MM/dd/yyyy");
+    return formattedDate;
+  }
 }
 export default new HelperService();
